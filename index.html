@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For You</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 230, 235, 0.96);
+            border: 2px solid #ffb6c1;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            max-width: 460px;
+            width: 90%;
+            backdrop-filter: blur(8px);
+            position: relative;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 2.1rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #2d3436;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid #ff7675;
+            text-align: left;
+            font-style: italic;
+        }
+
+        .heart {
+            color: #d63031;
+            font-size: 50px;
+            animation: heartbeat 1.2s infinite;
+            margin: 15px 0;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1.05); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .next-btn {
+            background-color: #ff7675;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .next-btn:hover {
+            background-color: #d63031;
+            transform: scale(1.05);
+        }
+
+        #yesBtn {
+            background-color: #2ecc71;
+            color: white;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            transition: transform 0.2s;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute;
+            right: 30px;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            transition: left 0.2s ease-out, top 0.2s ease-out, opacity 0.5s ease;
+            z-index: 999;
+            opacity: 1;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            top: -10px;
+            z-index: 1000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(720deg); }
+        }
+
+        .countdown-num {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #d63031;
+            margin: 20px 0;
+        }
+
+        /* Smooth styling for the secret flower link */
+        .flower-link {
+            color: #ff7675;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px dashed #ff7675;
+            transition: color 0.2s ease;
+        }
+        .flower-link:hover {
+            color: #d63031;
+            border-bottom-color: #d63031;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="page1" class="page active">
+        <div class="heart">❤️</div>
+        <h1>Hi, Nurul Awatif</h1>
+        <p>I built this little space completely for you. There is something important I've been meaning to share, and I wanted to tell you in a different way.</p>
+        <p>Take a deep breath and step inside when you're ready...</p>
+        <div class="btn-group">
+            <button class="next-btn" onclick="nextPage('2')">Open Message ✨</button>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="heart" style="font-size: 35px;">✨</div>
+        <h1>A Few Quick Things...</h1>
+        <p>Before we go any further, I just want you to know a couple of things that have been on my mind lately:</p>
+
+        <div class="highlight-box">
+            "You have this amazing way of making ordinary moments feel incredibly bright just by being around."
+        </div>
+
+        <div class="highlight-box">
+            "Whenever your name pops up on my phone, my day instantly gets a whole lot better."
+        </div>
+
+        <div class="btn-group">
+            <button class="next-btn" onclick="nextPage('3')">Continue ➡️</button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <div class="heart" style="font-size: 35px;">⏳</div>
+        <h1>Are You Ready?</h1>
+        <p>Alright, no more stalling. The real reason I sent you this link is right on the next screen.</p>
+        <p>Click below to start the countdown...</p>
+        <div class="btn-group">
+            <button class="next-btn" onclick="startCountdown()">Show Me 🫣</button>
+        </div>
+    </div>
+
+    <div id="pageCountdown" class="page">
+        <h1>Get Ready...</h1>
+        <div class="countdown-num" id="countdownDisplay">3</div>
+    </div>
+
+    <div id="page5" class="page">
+        <div class="heart">❤️</div>
+        <h1>Dear Nurul Awatif,</h1>
+        <p>I've been holding onto these feelings for a while now. You make my days brighter, and I really, really like you. <br><br><b>Will you go out with me?</b></p>
+
+        <div class="btn-group">
+            <button id="yesBtn" onclick="acceptInvitation()">Yes</button>
+            <button id="noBtn" onmouseover="moveAndFadeButton()">No</button>
+        </div>
+    </div>
+
+    <div id="page6" class="page">
+        <div class="heart" style="font-size: 70px; animation: heartbeat 0.6s infinite;">💖</div>
+        <h1>It's a Date! 😍</h1>
+        <p>You just made me the happiest person alive, Nurul Awatif! <br><br>Now you are officially my beautiful, gorgeous, pretty and adorable girlfriend. 😊✨</p>
+
+        <p style="font-size: 0.95rem; color: #636e72; margin-top: 35px; border-top: 1px dashed #b2bec3; padding-top: 20px;">
+            P.S. There is one last secret... Do you know what the hidden meaning behind giving exactly <a href="https://www.google.com/search?client=opera&q=3+gerberas+meaning&sourceid=opera&ie=UTF-8&oe=UTF-8" target="_blank" class="flower-link">3 gerberas</a> is? 🌸
+        </p>
+    </div>
+
+</div>
+
+<script>
+    let noClickCount = 0;
+
+    function nextPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById('page' + pageId).classList.add('active');
+    }
+
+    function startCountdown() {
+        nextPage('Countdown');
+        let timeLeft = 3;
+        const display = document.getElementById('countdownDisplay');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            if(timeLeft > 0) {
+                display.innerText = timeLeft;
+            } else {
+                clearInterval(timer);
+                nextPage('5');
+            }
+        }, 1000);
+    }
+
+    function moveAndFadeButton() {
+        const noBtn = document.getElementById('noBtn');
+        noClickCount++;
+
+        const maxX = window.innerWidth - noBtn.offsetWidth - 40;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 40;
+
+        const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+        const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = randomX + 'px';
+        noBtn.style.top = randomY + 'px';
+
+        if (noClickCount >= 3) {
+            noBtn.style.opacity = '0';
+            setTimeout(() => {
+                noBtn.style.disabled = true;
+                noBtn.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    function acceptInvitation() {
+        startConfetti();
+        nextPage('6');
+    }
+
+    function startConfetti() {
+        const colors = ['#ff6b6b', '#ffb6c1', '#ffda79', '#1dd1a1', '#54a0ff', '#5f27cd'];
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            confetti.style.animationDelay = (Math.random() * 1) + 's';
+            confetti.style.opacity = Math.random();
+
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            document.body.appendChild(confetti);
+            setTimeout(() => { confetti.remove(); }, 4000);
+        }
+    }
+</script>
+</body>
+</html>
